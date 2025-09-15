@@ -3,67 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Luka Vukadin</title>
-  <meta name="description" content="Logo" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Basics -->
+  <title>Luka Vukadin</title>
+  <meta name="description" content="Offizielle Website von Luka Vukadin – Logo & minimalistische Startseite." />
+  <link rel="canonical" href="https://lukavukadin.ch" />
+  <meta name="robots" content="index,follow" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="vuk.png">
+  <link rel="icon" type="image/png" href="vuk.png" />
+
+  <!-- Open Graph / Social (für Link-Vorschau in Chats) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lukavukadin.ch" />
+  <meta property="og:title" content="Luka Vukadin" />
+  <meta property="og:description" content="Logo" />
+  <meta property="og:image" content="https://lukavukadin.ch/vuk.png" />
+  <meta property="og:locale" content="de_CH" />
+
+  <!-- Twitter Card (wird auch von vielen Messengern genutzt) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Luka Vukadin" />
+  <meta name="twitter:description" content="Logo" />
+  <meta name="twitter:image" content="https://lukavukadin.ch/vuk.png" />
+
+  <!-- Strukturierte Daten (hilft Google beim Verstehen) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Luka Vukadin",
+    "url": "https://lukavukadin.ch"
+  }
+  </script>
 
   <style>
     :root{
-      --bg:#0a0b0f;           /* tiefes Schwarz */
-      --text:#f3f4f6;         /* fast Weiß */
-      --muted:#9aa0ab;        /* dezenter Ton */
-      --accent:#b9fffd;       /* zarter Akzent */
+      --bg:#0a0b0f;     /* dunkler Hintergrund */
+      --text:#f3f4f6;   /* fast Weiß */
+      --muted:#9aa0ab;  /* dezenter Text */
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
       background: var(--bg);
-      overflow:hidden; /* keine Scrollbar */
-      position:relative;
+      display:flex; align-items:center; justify-content:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      position:relative; overflow:hidden;
     }
 
-    /* Nebel/Wald Hintergrund */
+    /* Nebel-/Wald-Hintergrund */
     body::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:0;
+      content:""; position:absolute; inset:0; z-index:0;
       background:url('fog.png') center/cover no-repeat;
-      opacity:0.8; /* Nebel-Stärke */
-      filter:brightness(0.7);
+      opacity:0.8;                 /* Sichtbarkeit des Hintergrundbilds */
+      filter:brightness(0.7);      /* leicht abdunkeln, damit das Logo klar bleibt */
     }
 
     /* Bühne */
-    .stage{
-      position:relative; height:100%; display:grid; place-items:center; isolation:isolate;
-    }
+    .stage{ position:relative; height:100%; display:grid; place-items:center; isolation:isolate; }
 
-    /* Logo */
-    .stage img{
+    /* Logo zentriert */
+    .logo{
       position:relative; z-index:1;
       max-width:60vmin; height:auto;
-      filter:drop-shadow(0 0 12px rgba(0,0,0,0.7));
+      filter:drop-shadow(0 0 12px rgba(0,0,0,.7));
+      animation:fadeIn 1.2s ease-out both;
     }
+    @keyframes fadeIn{from{opacity:0; transform:scale(.97)} to{opacity:1; transform:none}}
 
     /* Copyright unten rechts */
     .copyright{
       position:fixed; right:20px; bottom:20px; z-index:2;
-      font-size:12px; color:var(--muted); opacity:0.7;
-      letter-spacing:.05em;
+      font-size:12px; color:var(--muted); opacity:.7; letter-spacing:.05em; user-select:none;
     }
   </style>
 </head>
 <body>
   <main class="stage" aria-label="Start">
-    <img src="vuk.png" alt="Logo Luka Vukadin">
+    <img src="vuk.png" alt="Logo von Luka Vukadin" class="logo" />
   </main>
   <div class="copyright">© Luka Vukadin</div>
 </body>
