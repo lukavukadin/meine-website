@@ -31,17 +31,17 @@
 
     /* Logo als weiches Wasserzeichen im Hintergrund */
     .stage::before{
-      content:""; position:absolute; inset:-10vmax; z-index:0; opacity:.35;  /* Transparenz justieren */
-      background-image:url('vuk.png'); /* <-- Lege dein Bild unter /assets/logo.png */
+      content:""; position:absolute; inset:-10vmax; z-index:1; opacity:.55;  /* stärker sichtbar */
+      background-image:url('vuk.png');
       background-repeat:no-repeat; background-position:center; background-size:min(90vmin, 900px);
-      filter: brightness(1.15) contrast(1.15); /* etwas kräftiger, damit das Logo sichtbarer ist */
+      filter: brightness(1.1) contrast(1.2);
       pointer-events:none;
     }
 
     /* leichte Vignette, um Fokus zur Mitte zu ziehen */
     .stage::after{
-      content:""; position:absolute; inset:0; z-index:0;
-      background: radial-gradient(40vmax 40vmax at 50% 45%, transparent 60%, rgba(0,0,0,.45));
+      content:""; position:absolute; inset:0; z-index:0; /* liegt HINTER dem Logo */
+      background: radial-gradient(50vmax 50vmax at 50% 45%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.55) 100%);
       pointer-events:none;
     }
 
