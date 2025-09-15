@@ -4,57 +4,67 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Luka Vukadin</title>
+  <meta name="description" content="Logo" />
 
-  <!-- Open Graph für Link-Vorschau -->
-  <meta property="og:title" content="Luka Vukadin" />
-  <meta property="og:description" content="Logo" />
-  <meta property="og:image" content="https://lukavukadin.ch/vuk.png" />
-  <meta property="og:url" content="https://lukavukadin.ch" />
-  <meta property="og:type" content="website" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="vuk.png">
 
   <style>
     :root{
-      --bg:#0a0b0f;
-      --text:#f3f4f6;
-      --muted:#9aa0ab;
+      --bg:#0a0b0f;           /* tiefes Schwarz */
+      --text:#f3f4f6;         /* fast Weiß */
+      --muted:#9aa0ab;        /* dezenter Ton */
+      --accent:#b9fffd;       /* zarter Akzent */
     }
-    *{box-sizing:border-box; margin:0; padding:0}
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
       background: var(--bg);
-      display:flex; align-items:center; justify-content:center;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+      overflow:hidden; /* keine Scrollbar */
       position:relative;
-      overflow:hidden;
     }
 
-    /* Nebel-Hintergrund */
+    /* Nebel/Wald Hintergrund */
     body::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background: url('fog.png') center/cover no-repeat;
-      opacity:0.8;   /* 80% Bildstärke */
-      filter: brightness(0.7) contrast(1.1);
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background:url('fog.png') center/cover no-repeat;
+      opacity:0.8; /* Nebel-Stärke */
+      filter:brightness(0.7);
     }
 
-    .logo{
-      max-width:70vw; max-height:70vh;
-      animation: fadeIn 1.5s ease-out both;
+    /* Bühne */
+    .stage{
+      position:relative; height:100%; display:grid; place-items:center; isolation:isolate;
+    }
+
+    /* Logo */
+    .stage img{
       position:relative; z-index:1;
+      max-width:60vmin; height:auto;
+      filter:drop-shadow(0 0 12px rgba(0,0,0,0.7));
     }
 
-    @keyframes fadeIn { from{opacity:0; transform:scale(.96)} to{opacity:1; transform:none} }
-
+    /* Copyright unten rechts */
     .copyright{
-      position:fixed; right:20px; bottom:20px;
-      font-size:12px; letter-spacing:.08em; color:var(--muted); opacity:.7;
-      user-select:none;
-      z-index:1;
+      position:fixed; right:20px; bottom:20px; z-index:2;
+      font-size:12px; color:var(--muted); opacity:0.7;
+      letter-spacing:.05em;
     }
   </style>
 </head>
 <body>
-  <img src="vuk.png" alt="Logo" class="logo" />
+  <main class="stage" aria-label="Start">
+    <img src="vuk.png" alt="Logo Luka Vukadin">
+  </main>
   <div class="copyright">© Luka Vukadin</div>
 </body>
 </html>
