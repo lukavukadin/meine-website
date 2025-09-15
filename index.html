@@ -21,17 +21,27 @@
     *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%}
     body{
-      background: radial-gradient(60vmax 40vmax at 70% -10%, rgba(185,255,253,.08), transparent 55%),
-                  radial-gradient(50vmax 30vmax at 0% 90%, rgba(80,90,255,.06), transparent 50%),
-                  var(--bg);
+      background: var(--bg);
       display:flex; align-items:center; justify-content:center;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Hintergrund Glow */
+    body::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background: radial-gradient(80vmax 80vmax at 50% 50%, rgba(110,231,255,.08), transparent 70%),
+                  radial-gradient(60vmax 60vmax at 30% 40%, rgba(155,140,255,.08), transparent 70%),
+                  radial-gradient(50vmax 50vmax at 70% 60%, rgba(255,255,255,.05), transparent 70%);
+      filter: blur(60px);
     }
 
     .logo{
       max-width:70vw; max-height:70vh;
       animation: fadeIn 1.5s ease-out both;
+      position:relative; z-index:1;
     }
 
     @keyframes fadeIn { from{opacity:0; transform:scale(.96)} to{opacity:1; transform:none} }
@@ -40,6 +50,7 @@
       position:fixed; right:20px; bottom:20px;
       font-size:12px; letter-spacing:.08em; color:var(--muted); opacity:.7;
       user-select:none;
+      z-index:1;
     }
   </style>
 </head>
