@@ -1,41 +1,77 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meine erste Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luka Vukadin</title>
+  <meta name="description" content="Minimalistische Visitenkarten-Seite von Luka Vukadin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-      color: #333;
-      text-align: center;
-      padding: 50px;
+    :root{
+      --bg:#0a0b0f;           /* tiefes Schwarz */
+      --text:#f3f4f6;         /* fast Weiß */
+      --muted:#9aa0ab;        /* dezenter Ton */
+      --accent:#b9fffd;       /* zarter Akzent */
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
+      background: radial-gradient(60vmax 40vmax at 70% -10%, rgba(185,255,253,.10), transparent 55%),
+                  radial-gradient(50vmax 30vmax at 0% 90%, rgba(80,90,255,.08), transparent 50%),
+                  var(--bg);
+      overflow:hidden; /* keine Scrollbar, rein eine Stage */
     }
-    p {
-      font-size: 1.2em;
+    /* Vollbild-Bühne */
+    .stage{
+      position:relative; height:100%; display:grid; place-items:center; isolation:isolate;
     }
-    .button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
+
+    /* Logo als weiches Wasserzeichen im Hintergrund */
+    .stage::before{
+      content:""; position:absolute; inset:-10vmax; z-index:0; opacity:.20;  /* Transparenz justieren */
+      background-image:url('assets/logo.png'); /* <-- Lege dein Bild unter /assets/logo.png */
+      background-repeat:no-repeat; background-position:center; background-size:min(80vmin,900px);
+      filter: saturate(.8) contrast(1.05) blur(.6px); /* subtil, nicht scharf */
+      pointer-events:none;
     }
-    .button:hover {
-      background: #555;
+
+    /* leichte Vignette, um Fokus zur Mitte zu ziehen */
+    .stage::after{
+      content:""; position:absolute; inset:0; z-index:0;
+      background: radial-gradient(40vmax 40vmax at 50% 45%, transparent 60%, rgba(0,0,0,.45));
+      pointer-events:none;
     }
+
+    /* Name in der Mitte */
+    h1{
+      position:relative; z-index:1; margin:0; font-weight:900; letter-spacing:.02em; line-height:1;
+      font-size: clamp(48px, 9vw, 130px);
+      text-align:center;
+      animation: enter 900ms ease-out both;
+    }
+
+    /* feiner Glanz, der langsam über die Buchstaben läuft */
+    h1::after{
+      content:""; position:absolute; inset:-.1em; z-index:-1; border-radius:.08em;
+      background: conic-gradient(from 0deg, rgba(255,255,255,.08), rgba(255,255,255,0) 25% 75%, rgba(255,255,255,.08));
+      filter: blur(18px); opacity:.35; animation: glow 5s ease-in-out infinite;
+    }
+
+    @keyframes enter{from{opacity:0; transform:translateY(6px) scale(.985)} to{opacity:1; transform:none}}
+    @keyframes glow{0%{transform:rotate(0)} 100%{transform:rotate(360deg)}}
+
+    /* Footer-Hinweis (optional, sehr dezent – kann auch gelöscht werden) */
+    .hint{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:1;
+      color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase; opacity:.6}
   </style>
 </head>
 <body>
-  <h1>LUKA VUKADIN</h1>
-  <a class="button" href="https://github.com" target="_blank">Mehr erfahren</a>
+  <main class="stage" aria-label="Start">
+    <h1>Luka Vukadin</h1>
+  </main>
+  <!-- <div class="hint">© Luka Vukadin</div>  <-- wenn du willst, auskommentieren entfernen -->
 </body>
 </html>
